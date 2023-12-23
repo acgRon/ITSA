@@ -1,0 +1,20 @@
+#include <stdio.h>
+
+int main() {
+    float height, weight;
+    int gender;
+
+    while (scanf("%f %d", &height, &gender) == 2) {
+        if (gender == 1) {
+            // 男生標準體重計算公式
+            weight = (height - 80) * 0.7;
+        } else if (gender == 2) {
+            // 女生標準體重計算公式
+            weight = (height - 70) * 0.6;
+        } 
+
+        printf("%.1f\n", weight);
+    }
+
+    return 0;
+}
