@@ -10,7 +10,7 @@ int main() {
     // 確保輸入在範圍內
     if (inputNumber < -128 || inputNumber > 127) {
         //printf("輸入超出範圍，請重新執行程式。\n");
-        return 1; // 程式結束，返回錯誤碼
+        return 1; 
     }
 
     // 將整數轉換為8位元的二進制表示
