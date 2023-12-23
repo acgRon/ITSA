@@ -19,8 +19,6 @@ void encrypt_text(char *text, int shift) {
 int main() {
     char text[100];
     int shift;
-
-    // 读取输入
     //printf("輸入想要加密的內容: ");
     fgets(text, sizeof(text), stdin);
     //printf("輸入往後替代的數目: ");
