@@ -1,0 +1,40 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+#define MAX_DIGITS 7
+
+// 比較函數，用於qsort排序
+int compare(const void *a, const void *b) {
+    return (*(char *)b - *(char *)a);
+}
+
+int main() {
+    char input[MAX_DIGITS * 2];  // 假設每個數字後都有一個逗號，所以是2倍
+    int numbers[MAX_DIGITS];
+    
+    fgets(input, sizeof(input), stdin);
+
+    // 將輸入字串拆分並轉換成數字陣列
+    char *token = strtok(input, ",");
+    int i = 0;
+    while (token != NULL && i < MAX_DIGITS) {
+        numbers[i++] = atoi(token);
+        token = strtok(NULL, ",");
+    }
+
+    // 將數字陣列排序
+    qsort(numbers, i, sizeof(int), compare);
+
+    // 組合最大值數列和最小值數列
+    char max_str[MAX_DIGITS * 2] = "";
+    char min_str[MAX_DIGITS * 2] = "";
+    for (int j = 0; j < i; j++) {
+        sprintf(max_str + strlen(max_str), "%d", numbers[j]);
+        sprintf(min_str + strlen(min_str), "%d", numbers[i - j - 1]);
+    }
+
+    printf("%d\n", atoi(max_str) - atoi(min_str));
+
+    return 0;
+}
