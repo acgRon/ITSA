@@ -1,0 +1,24 @@
+#include <stdio.h>
+#include <math.h>
+
+int main() {
+    double diameter = 200.0;
+    double radius = diameter / 2.0;
+
+    // 輸入座標
+    int x, y;
+    //printf("請輸入座標(X Y)：");
+    scanf("%d %d", &x, &y);
+
+    // 計算給定點到圓心的距離
+    double distance = sqrt(pow(x, 2) + pow(y, 2));
+
+    // 判斷是否在圓形內
+    if (distance <= radius) {
+        printf("inside\n");
+    } else {
+        printf("outside\n");
+    }
+
+    return 0;
+}
