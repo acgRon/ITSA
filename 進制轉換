@@ -1,0 +1,40 @@
+#include <stdio.h>
+
+// 用於將正整數 n 轉換為 m 進位表示
+void base_conversion(int n, int m) {
+    char result[100]; // 假定結果的最大長度為 100
+    int i = 0;
+    int p = n;
+    // 處理特殊情況：n 為 0
+    if (n == 0) {
+        result[i++] = '0';
+    } else {
+        while (n > 0) {
+            int remainder = n % m;
+            if (remainder < 10) {
+                result[i++] = remainder + '0';
+            } else {
+                result[i++] = remainder - 10 + 'a';
+            }
+            n /= m;
+        }
+    }
+
+    printf("The base %d representation of %d is ", m, p);
+    for (int j = i - 1; j >= 0; j--) {
+        printf("%c", result[j]);
+    }
+    printf(".\n");
+}
+
+int main() {
+    int n, m;
+
+
+    scanf("%d %d", &n, &m);
+
+    // 進行進位轉換
+    base_conversion(n, m);
+
+    return 0;
+}
