@@ -1,0 +1,17 @@
+#include <stdio.h>
+
+int main() {
+    // 讀入西元年份
+    int year;
+    //printf("請輸入一個 4 位數的整數，代表西洋的年份：");
+    scanf("%d", &year);
+
+    // 判斷是否為閏年
+    if ((year % 4 == 0 && year % 100 != 0) || (year % 400 == 0)) {
+        printf("Bissextile Year\n");
+    } else {
+        printf("Common Year\n");
+    }
+
+    return 0;
+}
