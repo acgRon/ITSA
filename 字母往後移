@@ -1,0 +1,36 @@
+#include <stdio.h>
+#include <ctype.h>
+
+void encrypt_text(char *text, int shift) {
+    while (*text) {
+        if (isalpha(*text)) {
+            if (islower(*text)) {
+                *text = (*text - 'a' + shift) % 26 + 'a';
+            } else {
+                *text = (*text - 'A' + shift) % 26 + 'A';
+            }
+        } else if (isdigit(*text)) {
+            *text = (*text - '0' + shift) % 10 + '0';
+        }
+        text++;
+    }
+}
+
+int main() {
+    char text[100];
+    int shift;
+
+    // 读取输入
+    //printf("輸入想要加密的內容: ");
+    fgets(text, sizeof(text), stdin);
+    //printf("輸入往後替代的數目: ");
+    scanf("%d", &shift);
+
+    // 调用加密函数
+    encrypt_text(text, shift);
+
+    // 输出加密结果
+    printf("%s", text);
+
+    return 0;
+}
