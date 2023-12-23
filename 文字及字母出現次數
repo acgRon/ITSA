@@ -1,0 +1,55 @@
+#include <stdio.h>
+#include <ctype.h>
+#include <string.h>
+
+#define MAX_LENGTH 100
+
+void countWords(char *inputText) {
+    // 將輸入文字轉換為小寫
+    for (int i = 0; inputText[i]; i++) {
+        inputText[i] = tolower(inputText[i]);
+    }
+
+    // 分隔單詞
+    char *word = strtok(inputText, " ,.");
+
+    // 計算字數
+    int wordCount = 0;
+
+    // 初始化字母頻率陣列
+    int letterFrequency[26] = {0};
+
+    // 計算每個字母的頻率
+    while (word != NULL) {
+        wordCount++;
+        for (int i = 0; word[i]; i++) {
+            if (isalpha(word[i])) {
+                letterFrequency[word[i] - 'a']++;
+            }
+        }
+        word = strtok(NULL, " ,.");
+    }
+
+    printf("%d\n", wordCount);
+    for (int i = 0; i < 26; i++) {
+        if (letterFrequency[i] > 0) {
+            printf("%c : %d\n", 'a' + i, letterFrequency[i]);
+        }
+    }
+}
+
+int main() {
+    char inputText[MAX_LENGTH];
+
+    fgets(inputText, MAX_LENGTH, stdin);
+
+    // 移除換行符
+    if (inputText[strlen(inputText) - 1] == '\n') {
+        inputText[strlen(inputText) - 1] = '\0';
+    }
+
+    // 呼叫函數計算字數和字母頻率
+    countWords(inputText);
+
+    return 0;
+}
