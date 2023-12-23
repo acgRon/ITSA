@@ -1,0 +1,43 @@
+#include <stdio.h>
+
+int main() {
+    int monthly_fee[] = {186, 386, 586, 986};
+    float discount_rate_within_limit[] = {0.9, 0.8, 0.7, 0.6};
+    float discount_rate_exceed_limit[] = {0.8, 0.7, 0.6, 0.5};
+    char input_str[20];
+
+    fgets(input_str, sizeof(input_str), stdin);
+
+    // 解析輸入
+    int plan, call_duration;
+    sscanf(input_str, "%d, %d", &plan, &call_duration);
+
+    // 判斷月租費型式
+    int index;
+    for (int i = 0; i < sizeof(monthly_fee) / sizeof(monthly_fee[0]); i++) {
+        if (monthly_fee[i] == plan) {
+            index = i;
+            break;
+        }
+    }
+
+    // 計算通話費
+    float rate = (plan == 186) ? 0.09 : ((plan == 386) ? 0.08 : ((plan == 586) ? 0.07 : 0.06));
+    float call_cost = rate * call_duration;
+
+    // 判斷是否超過月租費
+    float total_cost;
+    if (call_cost <= plan) {
+        total_cost = plan;
+    } else if (call_cost <= plan * 2) {
+        total_cost = call_cost * discount_rate_within_limit[index];
+    } else {
+        total_cost = call_cost * discount_rate_exceed_limit[index];
+    }
+
+    // 四捨五入
+    total_cost = (int)(total_cost + 0.5);
+    printf("%.0f\n", total_cost);
+
+    return 0;
+}
