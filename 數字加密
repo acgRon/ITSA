@@ -1,0 +1,28 @@
+#include <stdio.h>
+
+int main() {
+    int input_number, encrypted_result;
+    int digits[4];
+    scanf("%4d", &input_number);
+
+    // 將每個數字進行加密：（該位數＋７）％１０
+    for (int i = 3; i >= 0; i--) {
+        digits[i] = (input_number % 10 + 7) % 10;
+        input_number /= 10;
+    }
+
+    // 交換位數
+    int temp = digits[0];
+    digits[0] = digits[2];
+    digits[2] = temp;
+
+    temp = digits[1];
+    digits[1] = digits[3];
+    digits[3] = temp;
+
+    // 計算加密後的結果
+    encrypted_result = digits[0] * 1000 + digits[1] * 100 + digits[2] * 10 + digits[3];
+    printf("%04d\n", encrypted_result);
+
+    return 0;
+}
