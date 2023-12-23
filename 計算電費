@@ -1,0 +1,33 @@
+#include <stdio.h>
+
+int main() {
+
+    float summer_rates[] = {2.10, 3.02, 4.39, 4.97, 5.63};
+    float non_summer_rates[] = {2.10, 2.68, 3.61, 4.01, 4.50};
+    int usage;
+    scanf("%d", &usage);
+
+    float summer_cost = 0, non_summer_cost = 0;
+
+    if (usage <= 120) {
+        summer_cost += usage * summer_rates[0];
+        non_summer_cost += usage * non_summer_rates[0];
+    } else if (usage <= 330) {
+        summer_cost += 120 * summer_rates[0] + (usage - 120) * summer_rates[1];
+        non_summer_cost += 120 * non_summer_rates[0] + (usage - 120) * non_summer_rates[1];
+    } else if (usage <= 500) {
+        summer_cost += 120 * summer_rates[0] + 210 * summer_rates[1] + (usage - 330) * summer_rates[2];
+        non_summer_cost += 120 * non_summer_rates[0] + 210 * non_summer_rates[1] + (usage - 330) * non_summer_rates[2];
+    } else if (usage <= 700) {
+        summer_cost += 120 * summer_rates[0] + 210 * summer_rates[1] + 170 * summer_rates[2] + (usage - 500) * summer_rates[3];
+        non_summer_cost += 120 * non_summer_rates[0] + 210 * non_summer_rates[1] + 170 * non_summer_rates[2] + (usage - 500) * non_summer_rates[3];
+    } else {
+        summer_cost += 120 * summer_rates[0] + 210 * summer_rates[1] + 170 * summer_rates[2] + 200 * summer_rates[3] + (usage - 700) * summer_rates[4];
+        non_summer_cost += 120 * non_summer_rates[0] + 210 * non_summer_rates[1] + 170 * non_summer_rates[2] + 200 * non_summer_rates[3] + (usage - 700) * non_summer_rates[4];
+    }
+
+    printf("Summer months:%.2f\n", summer_cost);
+    printf("Non-Summer months:%.2f\n", non_summer_cost);
+
+    return 0;
+}
