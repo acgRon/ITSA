@@ -1,0 +1,62 @@
+#include <stdio.h>
+
+typedef struct {
+    double real;
+    double imag;
+} Complex;
+
+// 加法
+Complex add(Complex a, Complex b) {
+    Complex result;
+    result.real = a.real + b.real;
+    result.imag = a.imag + b.imag;
+    return result;
+}
+
+// 減法
+Complex subtract(Complex a, Complex b) {
+    Complex result;
+    result.real = a.real - b.real;
+    result.imag = a.imag - b.imag;
+    return result;
+}
+
+// 乘法
+Complex multiply(Complex a, Complex b) {
+    Complex result;
+    result.real = a.real * b.real - a.imag * b.imag;
+    result.imag = a.real * b.imag + a.imag * b.real;
+    return result;
+}
+
+int main() {
+    int n;
+    scanf("%d", &n);
+
+    for (int i = 0; i < n; ++i) {
+        char op;
+        Complex a, b, result;
+
+        scanf(" %c", &op);
+        scanf("%lf %lf %lf %lf", &a.real, &a.imag, &b.real, &b.imag);
+
+        switch (op) {
+            case '+':
+                result = add(a, b);
+                break;
+            case '-':
+                result = subtract(a, b);
+                break;
+            case '*':
+                result = multiply(a, b);
+                break;
+            default:
+                printf("Invalid operator\n");
+                return 1;
+        }
+
+        printf("%.f %.f\n", result.real, result.imag);
+    }
+
+    return 0;
+}
