@@ -1,0 +1,29 @@
+#include <stdio.h>
+
+void count_ascii_frequency(const char *input_str) {
+    // 使用陣列來儲存每個ASCII字元的出現次數
+    int ascii_count[256] = {0};  // ASCII範圍是0到255
+
+    // 計算ASCII字元的出現次數
+    for (const char *ptr = input_str; *ptr != '\0'; ++ptr) {
+        int ascii_value = (int)(*ptr);
+        // 排除 '\n' 字元
+        if (ascii_value != 10) {
+            ++ascii_count[ascii_value];
+        }
+    }
+
+    for (int i = 255; i >= 0; --i) {
+        if (ascii_count[i] > 0) {
+            printf("%d %d\n", i, ascii_count[i]);
+        }
+    }
+}
+
+int main() {
+    char input_str[100];
+    fgets(input_str, sizeof(input_str), stdin);
+    count_ascii_frequency(input_str);
+
+    return 0;
+}
