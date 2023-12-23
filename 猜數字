@@ -1,0 +1,39 @@
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+    char answer[5];
+    char guess[5];
+    int A, B;
+
+    scanf("%s", answer);
+    
+    while (1) {
+
+        scanf("%s", guess);
+        
+        // 檢查是否輸入0，如果是則結束程式
+        if (strcmp(guess, "0000") == 0) {
+            break;
+        }
+        
+        // 初始化 A 和 B 的計數
+        A = 0;
+        B = 0;
+        
+        // 檢查每一位數字
+        for (int i = 0; i < 4; i++) {
+            // 如果數字和位置完全相同，則A加1
+            if (guess[i] == answer[i]) {
+                A++;
+            }
+            // 如果數字相同但位置不同，則B加1
+            else if (strchr(answer, guess[i]) != NULL) {
+                B++;
+            }
+        }
+        printf("%dA%dB\n", A, B);
+    }
+    
+    return 0;
+}
