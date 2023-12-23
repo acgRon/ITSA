@@ -1,0 +1,22 @@
+#include <stdio.h>
+int gcd(int a, int b);
+
+int main() {
+    int num1, num2;
+    scanf("%d %d", &num1, &num2);
+    int result = gcd(num1, num2);
+    printf("%d\n", result);
+
+    return 0;
+}
+
+// 輾轉相除法求最大公因數的函式定義
+int gcd(int a, int b) {
+    int temp;
+    while (b != 0) {
+        temp = b;
+        b = a % b;
+        a = temp;
+    }
+    return a;
+}
