@@ -1,14 +1,13 @@
 #include <stdio.h>
 
 int main() {
-    // 定義變數
     int miles;
     double kilometers;
 
-    // 提示使用者輸入英哩數
+    // 輸入英哩數
     //printf("請輸入英哩數: ");
     
-    // 讀取輸入的英哩數
+    // 輸入的英哩數
     scanf("%d", &miles);
 
     // 轉換成公里
