@@ -1,0 +1,40 @@
+#include <stdio.h>
+
+int checkWin(int board[3][3]);
+
+int main() {
+    int board[3][3];
+    for(int i = 0; i < 3; i++){
+        for(int j = 0; j < 3; j++){
+            scanf("%d",&board[i][j]);
+        }
+    }
+
+    // 判斷勝負並輸出結果
+    if (checkWin(board)) {
+        printf("True\n");
+    } else {
+        printf("False\n");
+    }
+
+    return 0;
+}
+
+// 檢查勝負的函數
+int checkWin(int board[3][3]) {
+    // 檢查行和列
+    for (int i = 0; i < 3; i++) {
+        if ((board[i][0] == board[i][1] && board[i][1] == board[i][2]) ||  // 檢查行
+            (board[0][i] == board[1][i] && board[1][i] == board[2][i])) {   // 檢查列
+            return 1; // 有勝負
+        }
+    }
+
+    // 檢查對角線
+    if ((board[0][0] == board[1][1] && board[1][1] == board[2][2]) ||
+        (board[0][2] == board[1][1] && board[1][1] == board[2][0])) {
+        return 1; // 有勝負
+    }
+
+    return 0; // 無勝負
+}
