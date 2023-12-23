@@ -1,0 +1,27 @@
+#include <stdio.h>
+
+int main() {
+    int inputNumber;
+
+    // 輸入整數
+    //printf("請輸入一個整數 (-128 到 127): ");
+    scanf("%d", &inputNumber);
+
+    // 確保輸入在範圍內
+    if (inputNumber < -128 || inputNumber > 127) {
+        //printf("輸入超出範圍，請重新執行程式。\n");
+        return 1; // 程式結束，返回錯誤碼
+    }
+
+    // 將整數轉換為8位元的二進制表示
+    //printf("二進制表示: ");
+    for (int i = 7; i >= 0; i--) {
+        // 使用位元運算取得每一位的值
+        int bit = (inputNumber >> i) & 1;
+        printf("%d", bit);
+    }
+
+    printf("\n");
+
+    return 0; 
+}
